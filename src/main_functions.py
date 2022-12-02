@@ -1,11 +1,14 @@
 import pandas as pd
 
 
+# Day 1
+
 def parse_input(filename: str) -> dict:
     """
      convert input file into a dictionary of dictionaries on elves food
 
-    :param filename: txt file if input of elves food
+    Args:
+        filename: txt file if input of elves food
     :return:
         output format:
         elves = {
@@ -56,8 +59,10 @@ def parse_input(filename: str) -> dict:
 
 def find_max_calories_elf(elves: dict) -> [str, int]:
     """
+    Find max calories elf
 
-    :param elves: see parse_input
+    Args:
+         elves: see parse_input
     :return:
         max_calories, max(total_calories.values())
     """
@@ -69,9 +74,12 @@ def find_max_calories_elf(elves: dict) -> [str, int]:
 
 def ranked_calories_elf(elves: dict) -> pd.DataFrame:
     """
+    Compute ranked table of elves
 
-    :param elves: see parse_input
-    :return:
+    Args:
+        elves: see parse_input
+    Returns:
+
         max_calories, max(total_calories.values())
     """
 
