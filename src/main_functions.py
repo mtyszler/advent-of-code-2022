@@ -335,8 +335,8 @@ def find_overlap_rucksack(input_str: str) -> str:
     """
 
     N = len(input_str)
-    part_1 = input_str[0:int(N/2)]
-    part_2 = input_str[int(N/2):]
+    part_1 = input_str[0:int(N / 2)]
+    part_2 = input_str[int(N / 2):]
 
     s = difflib.SequenceMatcher(None, part_1, part_2)
     pos_a, pos_b, size = s.find_longest_match(0, len(part_1), 0, len(part_2))
