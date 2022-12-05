@@ -1,4 +1,3 @@
-import pandas as pd
 import pytest
 
 from main_functions import *
@@ -44,14 +43,13 @@ def test_example2():
     input_strings = []
     for line in lines:
         if count < 3:
-            input_strings.append(line)
+            input_strings.append(line.rstrip())
             count += 1
         else:
             tot_priority += priority_letter(find_badges_rucksack(
                 input_strings[0], input_strings[1], input_strings[2]))
             count = 0
-            input_strings = []
-            input_strings.append(line)
+            input_strings = [line]
             count += 1
 
     tot_priority += priority_letter(find_badges_rucksack(

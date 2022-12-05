@@ -23,5 +23,3 @@ for line in lines:
 
 print("Has overlap score")
 print(tot_overlaps)
-
-

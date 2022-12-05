@@ -1,4 +1,3 @@
-import pandas as pd
 import pytest
 
 from main_functions import *
@@ -23,6 +22,7 @@ def test_contained(input_str, overlapped):
     overlapped_function = has_overlap(input_str)
 
     assert (overlapped == overlapped_function)
+
 
 @pytest.mark.parametrize("input_str, res_range",
                          [("2-4", range(2, 5)),
