@@ -1,6 +1,6 @@
 import pytest
 
-from main_functions import *
+from functions_day_06 import *
 
 
 @pytest.mark.parametrize("input_str, return_pos",
@@ -15,6 +15,7 @@ def test_find_signal(input_str, return_pos):
     print(signal_str)
     print(signal_pos)
     assert (signal_pos == return_pos)
+
 
 @pytest.mark.parametrize("input_str, return_pos",
                          [("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19),

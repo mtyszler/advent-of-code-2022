@@ -1,6 +1,6 @@
 import pytest
 
-from main_functions import *
+from functions_day_04 import *
 
 
 @pytest.mark.parametrize("input_str, overlapped",
@@ -43,7 +43,7 @@ def test_single_range(input_str, res_range):
 
 
 def test_example():
-    input_file = open('input_files/input_day_4_example.txt', 'r')
+    input_file = open('input_files/input_day_04_example.txt', 'r')
     lines = input_file.readlines()
 
     tot_overlaps = 0
@@ -54,7 +54,7 @@ def test_example():
 
 
 def test_example2():
-    input_file = open('input_files/input_day_4_example.txt', 'r')
+    input_file = open('input_files/input_day_04_example.txt', 'r')
     lines = input_file.readlines()
 
     tot_overlaps = 0

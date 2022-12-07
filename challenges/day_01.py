@@ -1,7 +1,7 @@
-from main_functions import *
+from functions_day_01 import *
 
 # challenge 1
-elves = parse_input('../input_files/input_day_1.txt')
+elves = parse_input('../input_files/input_day_01.txt')
 max_elf, max_elf_calories = find_max_calories_elf(elves)
 print("elf carrying most calories")
 print(max_elf)

@@ -1,4 +1,4 @@
-from main_functions import *
+from functions_day_06 import *
 
 # challenge 1:
 

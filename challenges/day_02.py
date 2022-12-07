@@ -1,6 +1,6 @@
-from main_functions import *
+from functions_day_02 import *
 
-strategy_guide = read_in_rps_strategy_guide('../input_files/input_day_2.txt')
+strategy_guide = read_in_rps_strategy_guide('../input_files/input_day_02.txt')
 score = compute_score_rsp_strategy(strategy_guide)
 
 print("Strategy guide score")

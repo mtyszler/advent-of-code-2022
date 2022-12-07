@@ -1,6 +1,6 @@
 import pytest
 
-from main_functions import *
+from functions_day_03 import *
 
 
 @pytest.mark.parametrize("input_str, overlapped",
@@ -24,7 +24,7 @@ def test_letter_converter(input_str, points):
 
 
 def test_example():
-    input_file = open('input_files/input_day_3_example.txt', 'r')
+    input_file = open('input_files/input_day_03_example.txt', 'r')
     lines = input_file.readlines()
 
     tot_priority = 0
@@ -35,7 +35,7 @@ def test_example():
 
 
 def test_example2():
-    input_file = open('input_files/input_day_3_example.txt', 'r')
+    input_file = open('input_files/input_day_03_example.txt', 'r')
     lines = input_file.readlines()
 
     tot_priority = 0

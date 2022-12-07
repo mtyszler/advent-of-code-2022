@@ -1,8 +1,8 @@
-from main_functions import *
+from functions_day_03 import *
 
 # challenge 1:
 
-input_file = open('../input_files/input_day_3.txt', 'r')
+input_file = open('../input_files/input_day_03.txt', 'r')
 lines = input_file.readlines()
 
 tot_priority = 0
@@ -13,7 +13,7 @@ print("Priority score")
 print(tot_priority)
 
 # challenge 2:
-input_file = open('../input_files/input_day_3.txt', 'r')
+input_file = open('../input_files/input_day_03.txt', 'r')
 lines = input_file.readlines()
 
 tot_priority = 0
