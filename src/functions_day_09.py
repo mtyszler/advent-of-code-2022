@@ -75,28 +75,11 @@ def _apply_reaction(T_pos: [int, int], H_pos: [int, int]) -> [int, int]:
 
     """
 
-    if T_pos[0] == H_pos[0]:  # same row
-        if T_pos[1] == H_pos[1] - 1 or T_pos[1] == H_pos[1] + 1:  # adjacent
-            pass
-        else:
-            T_pos[1] += 1 * np.sign(H_pos[1] - T_pos[1])
-    elif T_pos[1] == H_pos[1]:  # same col
-        if T_pos[0] == H_pos[0] - 1 or T_pos[0] == H_pos[0] + 1:  # adjacent
-            pass
-        else:
-            T_pos[0] += 1 * np.sign(H_pos[0] - T_pos[0])
-    else:  # not same row nor column
-        if T_pos[0] == H_pos[0] - 1 and T_pos[1] == H_pos[1] - 1:  # touch diagonally
-            pass
-        elif T_pos[0] == H_pos[0] + 1 and T_pos[1] == H_pos[1] + 1:  # touch diagonally
-            pass
-        elif T_pos[0] == H_pos[0] - 1 and T_pos[1] == H_pos[1] + 1:  # touch diagonally
-            pass
-        elif T_pos[0] == H_pos[0] + 1 and T_pos[1] == H_pos[1] - 1:  # touch diagonally
-            pass
-        else:
-            T_pos[0] += 1 * np.sign(H_pos[0] - T_pos[0])
-            T_pos[1] += 1 * np.sign(H_pos[1] - T_pos[1])
+    ed = np.sqrt((T_pos[0]-H_pos[0]) ** 2 + (T_pos[1]-H_pos[1]) ** 2)
+
+    if ed > np.sqrt(2):
+        T_pos[0] += 1 * np.sign(H_pos[0] - T_pos[0])
+        T_pos[1] += 1 * np.sign(H_pos[1] - T_pos[1])
 
     return T_pos
 
