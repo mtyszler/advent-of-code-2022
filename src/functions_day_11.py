@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def parse_starting_positions(input_file: str) -> list[dict]:
+def parse_starting_positions(input_file: str) -> [list[dict], int]:
     """
 
     Args:
@@ -13,6 +13,7 @@ def parse_starting_positions(input_file: str) -> list[dict]:
 
     monkeys = []
     first = True
+    min_common_multiplier = 1
     with open(input_file, 'r') as f:
         all_monkeys = f.readlines()
 
@@ -31,6 +32,7 @@ def parse_starting_positions(input_file: str) -> list[dict]:
             new_monkey['operation'] = this_monkey.strip().split(":")[1].split("=")[1].strip()
         elif 'Test' in this_monkey:
             new_monkey['test'] = int(this_monkey.strip().split(":")[1].split("by")[1])
+            min_common_multiplier *= int(this_monkey.strip().split(":")[1].split("by")[1])
         elif 'If true' in this_monkey:
             new_monkey['true'] = int(this_monkey.strip().split(":")[1].split("monkey")[1])
         elif 'If false' in this_monkey:
@@ -41,10 +43,10 @@ def parse_starting_positions(input_file: str) -> list[dict]:
     new_monkey['n_inspections'] = 0
     monkeys.append(new_monkey.copy())
 
-    return monkeys
+    return monkeys, min_common_multiplier
 
 
-def _monkey_round(monkeys: list[dict], relief: int = 3) -> list[dict]:
+def _monkey_round(monkeys: list[dict], min_common_multiplier: int, relief: int = 3) -> list[dict]:
     """
 
     Args:
@@ -58,25 +60,29 @@ def _monkey_round(monkeys: list[dict], relief: int = 3) -> list[dict]:
 
         for this_item in this_monkey['items']:
             this_monkey['n_inspections'] += 1
-            if relief > 1:
-                worry_level = int(np.floor(eval(this_monkey['operation'], {}, {'old': this_item})/relief))
-            else:
-                worry_level = int(eval(this_monkey['operation'], {}, {'old': this_item}))
+            worry_level = int(np.floor(eval(this_monkey['operation'], {}, {'old': this_item}) / relief))
             test = np.mod(worry_level, this_monkey['test']) == 0
-            if test:
-                monkeys[this_monkey['true']]['items'].append(worry_level)
+            if relief == 1:
+                to_add_worry_level = int(np.mod(worry_level, min_common_multiplier))
             else:
-                monkeys[this_monkey['false']]['items'].append(worry_level)
+                to_add_worry_level = worry_level
+            if test:
+                monkeys[this_monkey['true']]['items'].append(to_add_worry_level)
+            else:
+                monkeys[this_monkey['false']]['items'].append(to_add_worry_level)
         # clear
         this_monkey['items'] = []
 
     return monkeys
 
 
-def run_monkeys(monkeys: list[dict], n_rounds: int, relief: int = 3, verbose: bool = True) -> list[dict]:
+def run_monkeys(monkeys: list[dict], n_rounds: int, relief: int = 3, min_common_multiplier: int = 1,
+                verbose: bool = False) -> list[dict]:
     """
 
     Args:
+        min_common_multiplier:
+        verbose:
         relief:
         monkeys:
         n_rounds:
@@ -87,9 +93,9 @@ def run_monkeys(monkeys: list[dict], n_rounds: int, relief: int = 3, verbose: bo
 
     for i in range(n_rounds):
         if verbose:
-            if np.mod(i, 100) == 0:
+            if np.mod(i, 500) == 0:
                 print("round ", i)
-        monkeys = _monkey_round(monkeys, relief=relief)
+        monkeys = _monkey_round(monkeys, relief=relief, min_common_multiplier=min_common_multiplier)
 
     return monkeys
 
